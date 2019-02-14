@@ -1,0 +1,115 @@
+/*all*/
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+  background-color: #FDEBD0;
+}
+h2{
+  text-align: center;
+}
+
+
+/*home&error*/
+  ul li{
+    display:inline;
+    text-align: center;
+    margin-right: 20px;
+    list-style: none;
+    text-decoration: none;
+  }
+  #title {
+    font-family:verdana;
+    background-color: #E36F4A;
+    background-color: rgba(227,111,74,0.5);
+    padding:auto;
+    margin: auto;
+    margin-top: 100px;
+    border-radius:10px;
+    left:50px;
+    width:300px;
+    height:100px;
+    text-align:center;   /* 水平居中 */
+    line-height: 80px;
+  }
+  .logotext{
+    position: relative;
+    margin-top: 25px;
+    text-shadow:1px 2px 4px rgba(0,0,0,.5);
+    color: #F07B38;
+    text-decoration: none;
+  }
+  .errortext{
+    position: relative;
+    margin-top: 25px;
+    text-shadow:1px 2px 4px rgba(0,0,0,.5);
+    text-align: center;
+    color: red;
+  }
+  .nav {
+    width:660px;
+    padding: 0 20px;
+    margin: 20px auto;
+    background-color:   #F39C12;
+    box-shadow: 0px 7px 5px #ba4a45;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .nav li{
+      position: relative;
+      padding: 10px 20px;
+      display: inline-block;
+      list-style: none outside none;
+      margin:0;
+    }
+  .nav a{
+      display: inline-block;
+      text-decoration: none;
+      font: bold 20px/1 Arial;
+      color: #fff;
+      text-shadow:1px 2px 4px rgba(0,0,0,.5);
+    }
+  .nav li::after {
+      content:"";
+      position: absolute;
+      top: 8px;
+      width: 1px;
+      height: 24px;
+      background: linear-gradient(to top, #ff625a, #9e3e3a 50%, #ff625a);}
+  .nav li::after {right: 0;}
+  .nav li:last-child::after {display: none;}
+    /*动效*/
+  .nav a:hover {transform: rotate(5deg); -webkit-transform: rotate(5deg);}
+  .nav a {transition: all .2s ease-in ;}
+
+/*tables*/
+/* Border styles */
+#table thead, #table tr {
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: rgb(230, 189, 189);
+}
+#table {
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: rgb(230, 189, 189);
+margin: auto;
+}
+
+/* Padding and font style */
+#table td, #table th {
+padding: 5px 10px;
+font-size: 12px;
+font-family: Verdana;
+color: rgb(177, 106, 104);
+}
+
+/* Alternating background colors */
+#table tr:nth-child(even) {
+background: rgb(238, 211, 210)
+}
+#table tr:nth-child(odd) {
+background: #FFF
+}
