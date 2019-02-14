@@ -7,7 +7,7 @@
   </head>
   <body>
     <div id="title">
-    <h1 class="errortext">エラーが発生した</h1>
+    <h1 class="errortext">エラーが</h1>
     </div>
       <ul class="nav">
         <li><a href="pets/pet_index.php"> ペット一覧 </a></li>
