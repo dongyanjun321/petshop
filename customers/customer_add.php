@@ -53,7 +53,9 @@
     </div>
 
     <?php
-  else:
+  else:?>
+  <form action="customer_add.php" method="get">
+  <?php
     include("../model/Customer.php");
 
     $name = $_POST["name"];
@@ -90,7 +92,7 @@
     }
       endif;
     ?>
-
+</form>
     </br><button><a href="../home.php">ホームページ</a></button>
   </body>
 </html>
