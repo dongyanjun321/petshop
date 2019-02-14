@@ -14,6 +14,12 @@ class Pet extends Connect{
   public $deleted_at;
 
 
+
+
+
+
+
+
   public function insert()
   {
     $conn = Connect::connect_db();
