@@ -1,0 +1,174 @@
+CREATE TABLE mtb_appointment_status(
+	id INT UNSIGNED AUTO_INCREMENT,
+	appointment_statu TEXT NOT NULL,
+	created_at TIMESTAMP,
+updated_at TIMESTAMP,
+deleted_at TIMESTAMP,
+PRIMARY KEY (id)
+);
+INSERT INTO `mtb_appointment_status` (`appointment_statu`) 
+VALUES 
+('予約済み'),
+('来店済み'),
+('キャンセル');
+
+
+CREATE TABLE mtb_order_status(
+	id INT UNSIGNED AUTO_INCREMENT,
+	order_statu TEXT NOT NULL,
+	created_at TIMESTAMP,
+updated_at TIMESTAMP,
+deleted_at TIMESTAMP,
+PRIMARY KEY (id)
+);
+INSERT INTO `mtb_order_status` (`order_statu`) 
+VALUES 
+('注文済み'),
+('配達済み'),
+('キャンセル'),
+('返品済み');
+
+CREATE TABLE mtb_prefectures(
+	id INT UNSIGNED AUTO_INCREMENT,
+	value varchar(10) UNIQUE NOT NULL,
+	rank INT UNIQUE NOT NULL,
+        	PRIMARY KEY (id)
+);
+INSERT INTO `mtb_prefectures`(`value`,`rank`) 
+VALUES 
+('北海道',1),
+('青森県',2),
+('岩手県',3),
+('宮城県',4),
+('秋田県',5),
+('山形県',6),
+('福島県',7),
+('茨城県',8),
+('栃木県',9),
+('群馬県',10),
+('埼玉県',11),
+('千葉県',12),
+('東京都',13),
+('神奈川県',14),
+('新潟県',15),
+('富山県',16),
+('石川県',17),
+('福井県',18),
+('山梨県',19),
+('長野県',20),
+('岐阜県',21),
+('静岡県',22),
+('愛知県',23),
+('三重県',24),
+('滋賀県',25),
+('京都府',26),
+('大阪府',27),
+('兵庫県',28),
+('奈良県',29),
+('和歌山県',30),
+('鳥取県',31),
+('島根県',32),
+('岡山県',33),
+('広島県',34),
+('山口県',35),
+('徳島県',36),
+('香川県',37),
+('愛媛県',38),
+('高知県',39),
+('福岡県',40),
+('佐賀県',41),
+('長崎県',42),
+('熊本県',43),
+('大分県',44),
+('宮崎県',45),
+('鹿児島県',46),
+('沖縄県',47);
+
+
+
+CREATE TABLE categories(
+	id INT UNSIGNED AUTO_INCREMENT,
+	name VARCHAR(10) UNIQUE NOT NULL,
+	introduction TEXT,
+ 	deleted_at TIMESTAMP NULL,
+	created_at TIMESTAMP NULL,
+	updated_at TIMESTAMP NULL,
+	PRIMARY KEY (id)
+
+);
+
+CREATE TABLE pets(
+	id INT UNSIGNED AUTO_INCREMENT,
+	code VARCHAR(6) UNIQUE NOT NULL,
+	category_id INT(10) UNSIGNED NOT NULL,
+	birthday DATE NOT NULL,
+	gender_flg INT NOT NULL COMMENT'1.MALE 2.FEMALE 3.UNKNOW',
+	vaccination_flg INT NOT NULL COMMENT'1.DONE 2.UNDONE',
+	price INT NOT NULL,
+ 	deleted_at TIMESTAMP NULL,
+	created_at TIMESTAMP NULL,
+	updated_at TIMESTAMP NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (category_id) REFERENCES  categories(id)
+);
+
+
+
+
+INSERT INTO categories(name)
+	VALUES
+		('Dogs'),
+		('Cats'),
+		('Birds'),
+		('Fishes'),
+		('Rodents');
+
+
+
+CREATE TABLE  customers(
+id INT UNSIGNED AUTO_INCREMENT,
+name TEXT NOT NULL,
+birthday DATE NOT NULL,
+phone_number INT  UNIQUE NOT NULL,
+email VARCHAR(50) UNIQUE,
+mtb_prefecture_id INT(10)  UNSIGNED,
+deleted_at TIMESTAMP NULL,
+created_at TIMESTAMP NULL,
+updated_at TIMESTAMP NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (mtb_prefecture_id) REFERENCES mtb_prefectures(id)
+);
+
+
+CREATE TABLE appointments (
+id INT UNSIGNED AUTO_INCREMENT,
+customer_id INT(10) UNSIGNED NOT NULL ,
+pet_id INT(10) UNSIGNED NOT NULL ,
+appointment_time DATE NOT NULL,
+mtb_appointment_statu_id INT(10) UNSIGNED NOT NULL,
+created_at TIMESTAMP,
+updated_at TIMESTAMP,
+deleted_at TIMESTAMP,
+PRIMARY KEY(id),
+FOREIGN KEY (customer_id)REFERENCES customers (id),
+FOREIGN KEY (mtb_appointment_statu_id)
+REFERENCES mtb_appointment_status (id),
+FOREIGN KEY (pet_id)REFERENCES pets (id)
+);
+
+
+CREATE TABLE orders(
+	id INT UNSIGNED AUTO_INCREMENT,
+	pet_id INT UNSIGNED NOT NULL,
+	customer_id INT UNSIGNED NOT NULL,
+	mtb_order_statu_id INT UNSIGNED NOT NULL,
+order_price INT NOT NULL,
+	order_time TIMESTAMP NOT NULL,
+	created_at TIMESTAMP,
+updated_at TIMESTAMP,
+deleted_at TIMESTAMP,
+PRIMARY KEY(id),
+FOREIGN KEY (mtb_order_statu_id)REFERENCES mtb_order_status (id),
+FOREIGN KEY (pet_id)REFERENCES pets(id),
+FOREIGN KEY (customer_id)REFERENCES customers(id)
+);
