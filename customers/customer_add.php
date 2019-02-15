@@ -83,12 +83,25 @@
     $customer->mail=$mail;
     $customer->mtb_prefecture_id=$mtb_prefecture_id;
 
+    $mail_check=Customer::find_by_mail($mail);
+    $phone_check=Customer::find_by_phone($phone_number);
+    if(isset($mail_check)){
+      echo "<p>このメールアドレスは既に登録されています</p>";
+      echo "<p><input type=\"submit\" name=\"submit\" value=\"戻り\"></p>";
+      exit();
+    }elseif (isset($phone_check)) {
+      echo "<p>この電話番号は既に登録されています</p>";
+      echo "<p><input type=\"submit\" name=\"submit\" value=\"戻り\"></p>";
+      exit();
+    }else{
+
     $result=$customer->insert();
 
     if ($result) {
       echo "<p>追加成功</p>";
     }else {
       echo "<p>追加失敗</p>";
+    }
     }
       endif;
     ?>

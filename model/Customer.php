@@ -134,6 +134,44 @@ public static function find($id)//查找整张表
   return $customer;
 }
 
+public static function find_by_mail($mail)//查找整张表
+{
+  $customer = null;
+
+  $conn = Connect::connect_db();
+  if(!$conn) {
+    return false;
+  }
+  $stmt = $conn->prepare("SELECT * FROM customers WHERE mail = :mail");
+  $stmt->bindparam(":mail", $mail);
+  $stmt->execute();
+  // 设置结果集为关联数组
+  $result = $stmt->setFetchMode(PDO::FETCH_CLASS, "Customer");
+  while($row = $stmt->fetch()) {
+    $customer = $row;
+    break;
+  }
+  return $customer;
+}
+public static function find_by_phone($phone_number)//查找整张表
+{
+  $customer = null;
+
+  $conn = Connect::connect_db();
+  if(!$conn) {
+    return false;
+  }
+  $stmt = $conn->prepare("SELECT * FROM customers WHERE phone_number = :phone_number");
+  $stmt->bindparam(":phone_number", $phone_number);
+  $stmt->execute();
+  // 设置结果集为关联数组
+  $result = $stmt->setFetchMode(PDO::FETCH_CLASS, "Customer");
+  while($row = $stmt->fetch()) {
+    $customer = $row;
+    break;
+  }
+  return $customer;
+}
 
 //mtb_appointment_statu_id check
 public static function find_mtb_prefecture_id($id)
